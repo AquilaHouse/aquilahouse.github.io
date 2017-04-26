@@ -2930,6 +2930,15 @@
 				color: inherit;
 			}
 
+			#point-counter {
+				text-align: center;
+				color: #000;
+				font-size: 2.5em;
+				padding: 0em 0 0em 0;
+			}
+			#point-counter h2 {
+				font-size:3.0em;
+			}
 /* Banner */
 
 	#banner {
