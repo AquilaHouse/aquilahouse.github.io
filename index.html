@@ -25,8 +25,9 @@
     .nav-wrapper a {
         color: rgb(246, 195, 48);
     }
+    
     .gold {
-      color: rgb(246, 195, 48);
+        color: rgb(246, 195, 48);
     }
     </style>
 </head>
@@ -49,33 +50,62 @@
         </div>
     </nav>
     <div class="row">
-      <div class="col s12 m12">
-      <div class="white-text">
-        <h1 class="center">Welcome to Aquila.</h1>
-      </div>
-      </div>
-        <div class="col s12 m6">
-            <div class="card zdepth-3">
-                <div class="card-content">
-                    <span class="card-title">Card Title</span>
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">This is a link</a>
-                    <a href="#">This is a link</a>
-                </div>
+        <div class="col s12 m12">
+            <div class="white-text">
+                <h1 class="center">Welcome to Aquila.</h1>
+                <p class="center white-text" style="font-size: 20px;">We are Aquila. Description stuff here.</p>
             </div>
         </div>
         <div class="col s12 m6">
             <div class="card zdepth-3">
                 <div class="card-content">
-                    <span class="card-title">Card Title</span>
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                    <span class="card-title">Members</span>
+                    <table class="striped">
+                        <tbody>
+                            <tr>
+                                <td>Nachi</td>
+                                <td>Junior</td>
+                            </tr>
+                            <tr>
+                                <td>Tyler</td>
+                                <td>Junior</td>
+                            </tr>
+                            <tr>
+                                <td>Nachi</td>
+                                <td>Junior</td>
+                            </tr>
+                            <tr>
+                                <td>Tyler</td>
+                                <td>Junior</td>
+                            </tr>
+                            <tr>
+                                <td>Nachi</td>
+                                <td>Junior</td>
+                            </tr>
+                            <tr>
+                                <td>Tyler</td>
+                                <td>Junior</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="card-action">
+                <!--                 <div class="card-action">
                     <a href="#">This is a link</a>
                     <a href="#">This is a link</a>
+                </div> -->
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card zdepth-3">
+                <div class="card-content">
+                    <span class="card-title">Upcoming Events</span>
+                    <ul class="collection" id="event-list">
+                    </ul>
                 </div>
+                <!--                 <div class="card-action">
+                    <a href="#">This is a link</a>
+                    <a href="#">This is a link</a>
+                </div> -->
             </div>
         </div>
     </div>
@@ -83,8 +113,19 @@
     <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
     <script type="text/javascript">
+    var eventHTML = function(event) {
+        return '<li class="collection-item avatar"><i class="material-icons circle">today</i><span class="title">' + event.name + '</span><p>' + event.day + ' - ' + event.time + ' @ ' + event.location + '<br>' + event.notes + '</p>                        '
+    }
     $(document).ready(function() {
         $(".button-collapse").sideNav();
+        $.getJSON("https://024ecd2c.ngrok.io/events", function(data) {
+            html = "";
+            for (var i = 0; i < data.length; i++) {
+                html += eventHTML(data[i])
+            }
+            $("#event-list").html(html);
+
+        });
     });
     </script>
 </body>
